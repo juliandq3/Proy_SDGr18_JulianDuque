@@ -1,0 +1,725 @@
+{
+  "datasets": [
+    {
+      "name": "26253300",
+      "displayName": "suspen_reinsta_resultados",
+      "config": {
+        "version": "1.1",
+        "source": "cat_ejec_dbricks.golden.suspen_reinsta_resultados",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "b3cc28cb",
+      "displayName": "Comportamiento",
+      "layout": [
+        {
+          "widget": {
+            "name": "2ed71e49",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "PERIODO",
+                      "expression": "`PERIODO`"
+                    },
+                    {
+                      "name": "sum(TOTAL_SUSPENSIONES)",
+                      "expression": "SUM(`TOTAL_SUSPENSIONES`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "PERIODO",
+                  "displayName": "Periodo",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(TOTAL_SUSPENSIONES)",
+                  "displayName": "Suspensiones",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 1,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "dd1b0f27",
+            "spec": {
+              "widgetType": "text",
+              "version": 1,
+              "encodings": {
+                "text": {
+                  "lines": [
+                    "<span style=\"text-align:center;display:block\"><span style=\"font-size:24px\">COMPORTAMIENTO SUSPENSIONES Y RECONEXIONES DEL SERVICIO 2026</span></span>"
+                  ],
+                  "fields": []
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 9,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "e27e4d07",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "sum(TOTAL_SUSPENSIONES)",
+                      "expression": "SUM(`TOTAL_SUSPENSIONES`)"
+                    },
+                    {
+                      "name": "ESTRATO",
+                      "expression": "`ESTRATO`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(TOTAL_SUSPENSIONES)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "ESTRATO",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 1,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "a71525cd",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "sum(TOTAL_SUSPENSIONES)",
+                      "expression": "SUM(`TOTAL_SUSPENSIONES`)"
+                    },
+                    {
+                      "name": "CICLO",
+                      "expression": "`CICLO`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(TOTAL_SUSPENSIONES)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "CICLO",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 1,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "58182f36",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "PERIODO",
+                      "expression": "`PERIODO`"
+                    },
+                    {
+                      "name": "sum(MAX_TIEMPO_REINST)",
+                      "expression": "SUM(`MAX_TIEMPO_REINST`)"
+                    },
+                    {
+                      "name": "sum(MIN_TIEMPO_REINST)",
+                      "expression": "SUM(`MIN_TIEMPO_REINST`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "PERIODO",
+                  "axis": {
+                    "hideTitle": true
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "sum(MAX_TIEMPO_REINST)"
+                    },
+                    {
+                      "fieldName": "sum(MIN_TIEMPO_REINST)"
+                    }
+                  ],
+                  "axis": {
+                    "hideTitle": true
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "0ce7433a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "ESTRATO",
+                      "expression": "`ESTRATO`"
+                    },
+                    {
+                      "name": "sum(MIN_TIEMPO_REINST)",
+                      "expression": "SUM(`MIN_TIEMPO_REINST`)"
+                    },
+                    {
+                      "name": "sum(MAX_TIEMPO_REINST)",
+                      "expression": "SUM(`MAX_TIEMPO_REINST`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  }
+                ]
+              },
+              "widgetType": "area",
+              "encodings": {
+                "x": {
+                  "fieldName": "ESTRATO",
+                  "axis": {
+                    "hideTitle": true
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "sum(MIN_TIEMPO_REINST)"
+                    },
+                    {
+                      "fieldName": "sum(MAX_TIEMPO_REINST)"
+                    }
+                  ],
+                  "axis": {
+                    "hideTitle": true
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 7,
+            "width": 6,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "d6dfc300",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "CICLO",
+                      "expression": "`CICLO`"
+                    },
+                    {
+                      "name": "sum(MAX_TIEMPO_REINST)",
+                      "expression": "SUM(`MAX_TIEMPO_REINST`)"
+                    },
+                    {
+                      "name": "sum(MIN_TIEMPO_REINST)",
+                      "expression": "SUM(`MIN_TIEMPO_REINST`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  }
+                ]
+              },
+              "widgetType": "area",
+              "encodings": {
+                "x": {
+                  "fieldName": "CICLO",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "sum(MAX_TIEMPO_REINST)"
+                    },
+                    {
+                      "fieldName": "sum(MIN_TIEMPO_REINST)"
+                    }
+                  ],
+                  "axis": {
+                    "hideTitle": true
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 10,
+            "width": 6,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "0693209b",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "PERIODO",
+                      "expression": "`PERIODO`"
+                    },
+                    {
+                      "name": "sum(AVG_DIAS_EJEC_REINS)",
+                      "expression": "SUM(`AVG_DIAS_EJEC_REINS`)"
+                    },
+                    {
+                      "name": "sum(AVG_DIAS_EJEC_SUSP)",
+                      "expression": "SUM(`AVG_DIAS_EJEC_SUSP`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  }
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "PERIODO",
+                  "axis": {
+                    "hideTitle": true
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "sum(AVG_DIAS_EJEC_REINS)"
+                    },
+                    {
+                      "fieldName": "sum(AVG_DIAS_EJEC_SUSP)"
+                    }
+                  ],
+                  "axis": {
+                    "hideTitle": true
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 13,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "97696be8",
+            "queries": [
+              {
+                "name": "dashboards/01f1e138d4d6169294f8510aeb0aef7a/datasets/01f1e138ef431c2082b34489f953e742_PERIODO",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "PERIODO",
+                      "expression": "`PERIODO`"
+                    },
+                    {
+                      "name": "PERIODO_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "PERIODO",
+                    "queryName": "dashboards/01f1e138d4d6169294f8510aeb0aef7a/datasets/01f1e138ef431c2082b34489f953e742_PERIODO"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 0,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "6903414c",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "ESTRATO",
+                      "expression": "`ESTRATO`"
+                    },
+                    {
+                      "name": "sum(AVG_DIAS_EJEC_REINS)",
+                      "expression": "SUM(`AVG_DIAS_EJEC_REINS`)"
+                    },
+                    {
+                      "name": "sum(AVG_DIAS_EJEC_SUSP)",
+                      "expression": "SUM(`AVG_DIAS_EJEC_SUSP`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "ESTRATO",
+                  "axis": {
+                    "hideTitle": true
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "sum(AVG_DIAS_EJEC_REINS)"
+                    },
+                    {
+                      "fieldName": "sum(AVG_DIAS_EJEC_SUSP)"
+                    }
+                  ],
+                  "axis": {
+                    "hideTitle": true
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 13,
+            "width": 6,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "64ed7b5a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "26253300",
+                  "fields": [
+                    {
+                      "name": "CICLO",
+                      "expression": "`CICLO`"
+                    },
+                    {
+                      "name": "sum(AVG_DIAS_EJEC_REINS)",
+                      "expression": "SUM(`AVG_DIAS_EJEC_REINS`)"
+                    },
+                    {
+                      "name": "sum(AVG_DIAS_EJEC_SUSP)",
+                      "expression": "SUM(`AVG_DIAS_EJEC_SUSP`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "CICLO",
+                  "axis": {
+                    "hideTitle": true
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "sum(AVG_DIAS_EJEC_REINS)"
+                    },
+                    {
+                      "fieldName": "sum(AVG_DIAS_EJEC_SUSP)"
+                    }
+                  ],
+                  "axis": {
+                    "hideTitle": true
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 16,
+            "width": 6,
+            "height": 3
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
