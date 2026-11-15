@@ -1,0 +1,60 @@
+resources:
+  jobs:
+    WK_Ejerc_SD:
+      name: WK_Ejerc_SD
+      tasks:
+        - task_key: Preparacion_Amb
+          notebook_task:
+            notebook_path: /Workspace/Users/jdduque@aguasdemanizales.com.co/Ejerc_Dbricks/proceso/1.Preparacion_Ambiente
+            base_parameters:
+              storageName: saejercdatabricks
+            source: WORKSPACE
+          existing_cluster_id: 1106-183345-yfo1ag1n
+        - task_key: Ingesta_reinstalaciones
+          depends_on:
+            - task_key: Preparacion_Amb
+          notebook_task:
+            notebook_path: /Workspace/Users/jdduque@aguasdemanizales.com.co/Ejerc_Dbricks/proceso/2.Ingest_reinstalaciones
+            base_parameters:
+              container: raw
+              catalogo: cat_ejec_dbricks
+              esquema: bronze
+              storageName: saejercdatabricks
+            source: WORKSPACE
+        - task_key: Ingesta_suspensiones
+          depends_on:
+            - task_key: Preparacion_Amb
+          notebook_task:
+            notebook_path: /Workspace/Users/jdduque@aguasdemanizales.com.co/Ejerc_Dbricks/proceso/2.Ingest_suspensiones
+            base_parameters:
+              container: raw
+              catalogo: cat_ejec_dbricks
+              esquema: bronze
+              storageName: saejercdatabricks
+            source: WORKSPACE
+        - task_key: Carga
+          depends_on:
+            - task_key: Trasnformacion
+          notebook_task:
+            notebook_path: /Workspace/Users/jdduque@aguasdemanizales.com.co/Ejerc_Dbricks/proceso/4.Load
+            base_parameters:
+              catalogo: cat_ejec_dbricks
+              esquema_source: silver
+              esquema_sink: golden
+            source: WORKSPACE
+          existing_cluster_id: 1106-183345-yfo1ag1n
+        - task_key: Trasnformacion
+          depends_on:
+            - task_key: Ingesta_reinstalaciones
+            - task_key: Ingesta_suspensiones
+          notebook_task:
+            notebook_path: /Workspace/Users/jdduque@aguasdemanizales.com.co/Ejerc_Dbricks/proceso/3.Transform
+            base_parameters:
+              catalogo: cat_ejec_dbricks
+              esquema_source: bronze
+              esquema_sink: silver
+            source: WORKSPACE
+          existing_cluster_id: 1106-183345-yfo1ag1n
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
